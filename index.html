@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page3</title>
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .main-wrapper {
+            width: 400px;
+            margin: 40px auto;
+            background-color: lightgray;
+            padding: 20px 40px;
+            border: 3px solid;
+        }
+        
+        .d-block {
+            display: block;
+            margin-bottom: 20px;
+        }
+        
+        .d-block span,
+        .d-block .options-list {
+            display: inline-block;
+        }
+        
+        .d-block span {
+            margin-right: 20px;
+        }
+        
+        .bold,
+        label {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .options-list li {
+            display: inline-block;
+            list-style-type: none;
+            margin-right: 15px;
+        }
+        
+        #textInput {
+            margin-right: 20px;
+        }
+        
+        input[type="text"] {
+            padding: 8px 16px;
+            width: 260px;
+            border-radius: 5px;
+        }
+        
+        button {
+            padding: 8px 16px;
+        }
+        
+        #ins_list li {
+            padding: 8px;
+            list-style-type: none;
+            background: #f2f2f2;
+            border-bottom: 1px solid #aaaaaa;
+        }
+    </style>
+    <script src="jq.js"></script>
+    <script>
+        $(function() {
+
+            $('#add_btn').click(function() {
+                var userinput = $("#textInput").val();
+                var data = document.createTextNode(userinput)
+                var newtd = document.createElement("li");
+                var newrw = $(newtd).append(data).css("background-color", $('input[type="radio"]:checked').val());
+                $("#ins_list").append(newrw).css("list-style-type", "none");
+            });
+            $('#searchInput').keyup(function() {
+                var uservalue = $(this).val();
+                $("#ins_list li").each(function() {
+
+                    var currentvalue = $(this).text();
+                    if (currentvalue.toLowerCase().indexOf(uservalue.toLowerCase()) != -1) {
+
+                        $(this).show(1000);
+                    } else {
+                        $(this).hide(1000);
+                    }
+
+                });
+
+
+            });
+
+
+
+
+
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="d-block">
+            <span class="bold">News Type: </span>
+            <ul class="options-list" id="allOptions">
+                <li>
+                    <input type="radio" id="sport" value="red" name="option_val" />
+                    <label for="sport">sport</label>
+                </li>
+                <li>
+                    <input type="radio" id="social" value="green" name="option_val" />
+                    <label for="social">social</label>
+                </li>
+                <li>
+                    <input type="radio" id="politics" value="blue" name="option_val" />
+                    <label for="politics">politics</label>
+                </li>
+            </ul>
+        </div>
+        <div class="d-block">
+            <input type="text" id="textInput" placeholder="Add here..." />
+            <button type="button" id="add_btn">ADD</button>
+        </div>
+        <div class="d-block">
+            <span class="bold">Search: </span>
+            <input type="text" id="searchInput" placeholder="search here..." />
+        </div>
+        <ul id="ins_list"></ul>
+    </div>
+
+</body>
+<html>
+
+</html>
